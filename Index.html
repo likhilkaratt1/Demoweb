@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Likhil Karatt | Optometrist</title>
+  <meta name="description" content="DOH/HAAD licensed Optometrist with 7+ years of experience across UAE and India. Advanced diagnostics, cataract/LASIK pre & post-op, glaucoma & diabetic retinopathy management." />
+  <meta property="og:title" content="Likhil Karatt | Optometrist" />
+  <meta property="og:description" content="DOH/HAAD licensed Optometrist with 7+ years of experience across UAE and India." />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#ffffff;
+      --text:#0f172a;
+      --muted:#64748b;
+      --surface:#f8fafc;
+      --line:#e2e8f0;
+      --brand:#0ea5b2;        /* teal */
+      --brand-600:#0d9488;
+      --brand-700:#0f766e;
+      --accent:#2563eb;       /* blue */
+      --shadow:0 10px 30px rgba(2,132,199,.15);
+      --radius:14px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:"Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:var(--text);
+      background:linear-gradient(180deg,#f9fbfd 0%,#ffffff 100%);
+    }
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+    .container{width:min(1120px, 92%);margin-inline:auto}
+
+    /* Progress bar */
+    .progress{
+      position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg, var(--brand), var(--accent));
+      z-index:9999;
+    }
+
+    /* Header */
+    header{
+      position:sticky;top:0;z-index:1000;
+      backdrop-filter:saturate(150%) blur(12px);
+      background:rgba(255,255,255,.7);
+      border-bottom:1px solid rgba(226,232,240,.8);
+    }
+    .nav{
+      display:flex;align-items:center;justify-content:space-between;gap:16px;
+      padding:14px 0;
+    }
+    .brand{
+      display:flex;align-items:center;gap:12px;font-weight:700;font-size:18px;letter-spacing:.2px;
+    }
+    .brand-badge{
+      width:36px;height:36px;border-radius:10px;
+      background:linear-gradient(135deg,var(--brand),var(--accent));
+      color:#fff;display:grid;place-items:center;font-weight:800;
+      box-shadow:var(--shadow)
+    }
+    nav ul{display:flex;gap:20px;list-style:none;margin:0;padding:0}
+    nav a{color:var(--muted);font-weight:500;padding:8px 10px;border-radius:8px}
+    nav a.active, nav a:hover{color:#0b1320;background:rgba(13,148,136,.08)}
+    .menu-btn{display:none;background:none;border:0;font-size:22px}
+    @media (max-width: 860px){
+      nav ul{
+        position:fixed;inset:62px 16px auto 16px;border:1px solid var(--line);
+        background:#fff;border-radius:16px;padding:14px;flex-direction:column;gap:10px;
+        transform:translateY(-16px);opacity:0;pointer-events:none;transition:.25s ease;
+        box-shadow:0 24px 48px rgba(2,6,23,.12)
+      }
+      nav ul.open{transform:translateY(0);opacity:1;pointer-events:auto}
+      .menu-btn{display:block}
+    }
+
+    /* Buttons */
+    .btn{
+      display:inline-flex;align-items:center;gap:10px;
+      padding:12px 16px;border-radius:12px;border:1px solid transparent;
+      font-weight:600;cursor:pointer;transition:.25s ease;
+    }
+    .btn-primary{background:linear-gradient(135deg,var(--brand),var(--accent));color:#fff;box-shadow:var(--shadow)}
+    .btn-primary:hover{filter:brightness(0.95)}
+    .btn-ghost{border-color:var(--line);color:#0b1320;background:#fff}
+    .btn-ghost:hover{border-color:#cbd5e1;background:#f8fafc}
+
+    /* Hero */
+    .hero{
+      position:relative;isolation:isolate;overflow:hidden;
+      padding:72px 0 40px 0;
+      background:
+        radial-gradient(1200px 400px at 50% -200px, rgba(14,165,178,.16), transparent 60%),
+        linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+    }
+    .hero-grid{display:grid;grid-template-columns:1.3fr .9fr;gap:36px;align-items:center}
+    @media (max-width: 960px){.hero-grid{grid-template-columns:1fr;gap:24px}}
+    .title{
+      font-size:clamp(28px, 4vw, 44px);line-height:1.15;margin:10px 0 14px 0;font-weight:800;
+      letter-spacing:-.5px
+    }
+    .subtitle{color:var(--muted);font-size:clamp(15px, 1.6vw, 17px)}
+    .chips{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0}
+    .chip{
+      background:rgba(13,148,136,.1);color:var(--brand-700);
+      border:1px solid rgba(13,148,136,.18);padding:8px 12px;border-radius:999px;font-weight:600;font-size:13px
+    }
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px}
+    .profile{
+      display:grid;place-items:center;padding:24px;background:#fff;border:1px solid var(--line);border-radius:24px;
+      box-shadow:0 30px 80px rgba(2,6,23,.08);
+    }
+    .avatar{
+      width:min(320px, 80%);aspect-ratio:1/1;border-radius:24px;
+      background:
+        radial-gradient(120px 120px at 30% 30%, rgba(37,99,235,.18), transparent 70%),
+        radial-gradient(100px 100px at 70% 70%, rgba(14,165,178,.18), transparent 70%),
+        linear-gradient(135deg, #eef7fb, #ffffff);
+      position:relative;display:grid;place-items:center;color:#0b1320;
+      font-weight:800;font-size:64px;letter-spacing:1px;
+      border:1px solid var(--line)
+    }
+    .kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}
+    .kpi{
+      background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:2px;
+      text-align:center
+    }
+    .kpi .num{font-size:28px;font-weight:800;background:linear-gradient(90deg,var(--brand),var(--accent));-webkit-background-clip:text;color:transparent}
+    .kpi .label{color:var(--muted);font-size:13px}
+
+    /* Sections */
+    section{padding:56px 0}
+    .section-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:20px}
+    .section-head h2{font-size:26px;margin:0}
+    .muted{color:var(--muted)}
+    .card{
+      background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px;
+      box-shadow:0 14px 36px rgba(2,6,23,.06)
+    }
+
+    /* Skills */
+    .skills{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    @media (max-width: 860px){.skills{grid-template-columns:1fr}}
+    .skill-group h3{margin:0 0 8px 0;font-size:18px}
+    .tags{display:flex;flex-wrap:wrap;gap:10px}
+    .tag{
+      padding:8px 10px;border-radius:12px;border:1px solid var(--line);
+      background:#fff;font-weight:600;color:#0b1320;font-size:13px
+    }
+
+    /* Experience timeline */
+    .timeline{position:relative;margin-top:8px}
+    .timeline:before{
+      content:"";position:absolute;left:18px;top:0;bottom:0;width:2px;background:linear-gradient(var(--brand),var(--accent));
+      border-radius:2px;opacity:.25
+    }
+    .t-item{display:grid;grid-template-columns:36px 1fr;gap:14px;margin-bottom:18px}
+    .t-dot{
+      width:36px;height:36px;border-radius:999px;display:grid;place-items:center;color:#fff;font-weight:800;
+      background:linear-gradient(135deg,var(--brand),var(--accent));
+      box-shadow:var(--shadow)
+    }
+    .t-card .role{font-weight:700}
+    .t-card .meta{color:var(--muted);font-size:13px;margin:6px 0 8px 0}
+    .t-card ul{margin:0 0 0 18px;line-height:1.6}
+    .t-card li{margin-bottom:6px}
+
+    /* Certifications / Awards grid */
+    .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+    @media (max-width: 720px){.grid{grid-template-columns:1fr}}
+
+    /* Contact */
+    .contact-wrap{display:grid;grid-template-columns:1.2fr .8fr;gap:16px}
+    @media (max-width: 860px){.contact-wrap{grid-template-columns:1fr}}
+    .list{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+    .list li{display:flex;align-items:center;gap:10px}
+    .pill{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:#fff}
+
+    footer{padding:26px 0;color:var(--muted);text-align:center;border-top:1px solid var(--line);background:#fff}
+
+    /* Reveal on scroll */
+    [data-animate]{opacity:0;transform:translateY(18px);transition:opacity .8s cubic-bezier(.2,.65,.18,.98), transform .8s cubic-bezier(.2,.65,.18,.98)}
+    [data-animate].in{opacity:1;transform:none}
+    [data-animate="left"]{transform:translateX(-24px)}
+    [data-animate="right"]{transform:translateX(24px)}
+    [data-animate="zoom"]{transform:scale(.96);}
+
+    /* Back to top */
+    .to-top{
+      position:fixed;right:18px;bottom:18px;z-index:999;border:1px solid var(--line);background:#fff;
+      border-radius:12px;padding:10px;box-shadow:0 14px 30px rgba(2,6,23,.1);opacity:0;pointer-events:none;transition:.25s ease
+    }
+    .to-top.show{opacity:1;pointer-events:auto}
+
+    /* Print (quick CV export) */
+    @media print{
+      header, .to-top, .progress, .hero-actions .btn-primary{display:none !important}
+      section{padding:10px 0}
+      .card{box-shadow:none}
+      body{background:#fff}
+    }
+  </style>
+</head>
+<body>
+  <!-- Scroll progress -->
+  <div class="progress" id="progress"></div>
+
+  <!-- Header / Nav -->
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <div class="brand-badge">LK</div>
+        <div>Likhil Karatt • Optometrist</div>
+      </div>
+      <nav>
+        <button class="menu-btn" aria-label="Toggle Menu" id="menuBtn">?</button>
+        <ul id="navList">
+          <li><a href="#home" class="active">Home</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#education">Education</a></li>
+          <li><a href="#certs">Certifications</a></li>
+          <li><a href="#volunteer">Volunteering</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section id="home" class="hero">
+    <div class="container hero-grid">
+      <div>
+        <div class="chips" data-animate="left">
+          <span class="chip">DOH/HAAD Licensed</span>
+          <span class="chip">7+ Years Experience</span>
+          <span class="chip">Open to Relocate</span>
+        </div>
+        <h1 class="title" data-animate>LIKHIL KARATT</h1>
+        <p class="subtitle" data-animate="zoom">
+          Optometrist based in Abu Dhabi, United Arab Emirates. Expert in advanced diagnostics, pre- and post-operative care
+          for Cataract and LASIK, and management of glaucoma and diabetic retinopathy. Known for patient-centered care,
+          clear communication, and strong collaboration with ophthalmologists.
+        </p>
+
+        <div class="hero-actions" data-animate="right">
+          <a class="btn btn-primary" href="#contact">Contact</a>
+          <button class="btn btn-ghost" id="printBtn">Download CV (Print)</button>
+          <!-- TODO: Replace # with your LinkedIn URL -->
+          <a class="btn btn-ghost" href="#" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+      </div>
+
+      <div class="profile" data-animate="right">
+        <div class="avatar" aria-label="Profile image placeholder">LK</div>
+        <div class="kpis">
+          <div class="kpi">
+            <div class="num" data-counter="7">0</div>
+            <div class="label">Years Experience</div>
+          </div>
+          <div class="kpi">
+            <div class="num" data-counter="150">0</div>
+            <div class="label">Community Eye Camps</div>
+          </div>
+          <div class="kpi">
+            <div class="num">GT 28927</div>
+            <div class="label">DOH License</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience -->
+  <section id="experience">
+    <div class="container">
+      <div class="section-head">
+        <h2>Professional Experience</h2>
+        <span class="muted">Hospital & outpatient across UAE and India</span>
+      </div>
+
+      <div class="timeline">
+        <!-- Phoenix Hospital -->
+        <div class="t-item" data-animate>
+          <div class="t-dot">PH</div>
+          <div class="card t-card">
+            <div class="role">Consultant Optometrist</div>
+            <div class="meta">Phoenix Hospital LLC • Abu Dhabi, UAE • Aug 2022 – Present</div>
+            <ul>
+              <li>Comprehensive eye exams for all age groups (Refraction, slit-lamp biomicroscopy, fundus evaluation, IOP).</li>
+              <li>Lead Cataract and LASIK pre-/post-op assessments and patient counseling.</li>
+              <li>Manage glaucoma monitoring; diabetic retinopathy screening and grading; co-manage with ophthalmologists.</li>
+              <li>Operate diagnostics: OCT, Fundus Camera, Corneal Topography, Perimetry, Pachymetry, A-scan, B-scan.</li>
+              <li>Contact lens assessments/fitting (soft, RGP, scleral) and spectacle/progressive lens counseling.</li>
+              <li>Assist in minor procedures: chalazion incision, lid lesion excision, abscess drainage.</li>
+              <li>Support clinical procedures: foreign body removal, subconjunctival injections, corneal scraping.</li>
+              <li>Maintain accurate EMR; manage insurance pre-authorizations and KPI tracking.</li>
+              <li>Support JCI accreditation via audits, compliance checks, and quality improvement.</li>
+              <li>Participate in emergency drills; certified basic fire responder (fire safety training completed).</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Ahalia Foundation Eye Hospital -->
+        <div class="t-item" data-animate>
+          <div class="t-dot">AF</div>
+          <div class="card t-card">
+            <div class="role">Consultant Optometrist</div>
+            <div class="meta">Ahalia Foundation Eye Hospital • Palakkad, Kerala, India • Apr 2018 – Jun 2022</div>
+            <ul>
+              <li>Comprehensive exams for pediatric, geriatric, and general populations (refraction, binocular vision, low vision rehab).</li>
+              <li>Advanced contact lens practice (soft, RGP, Rose K, scleral) for keratoconus and corneal conditions.</li>
+              <li>Pre-operative LASIK assessments (Pentacam); refractive counseling and follow-up.</li>
+              <li>Operated HFA, fundus photography, OCT, VEP, and ERG for screening and management.</li>
+              <li>Led 150+ rural eye camps, school vision screenings, and cataract detection drives.</li>
+              <li>Delivered health education on eye care and computer vision syndrome to students, women’s groups, and NGOs.</li>
+              <li>Participated in vision awareness projects; trained in corneal retrieval and transplant protocols.</li>
+              <li>Supported quality improvement, KPI monitoring, infection control, and JCI accreditation.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills" class="surface">
+    <div class="container">
+      <div class="section-head">
+        <h2>Core Competencies</h2>
+        <span class="muted">Technical and personal strengths</span>
+      </div>
+      <div class="skills">
+        <div class="card skill-group" data-animate="left">
+          <h3>Technical Skills</h3>
+          <div class="tags">
+            <span class="tag">Comprehensive Eye Exams</span>
+            <span class="tag">OCT</span>
+            <span class="tag">Fundus Photography</span>
+            <span class="tag">Corneal Topography</span>
+            <span class="tag">Perimetry (HFA)</span>
+            <span class="tag">Pachymetry</span>
+            <span class="tag">Biometry</span>
+            <span class="tag">LASIK/Cataract Pre & Post-op</span>
+            <span class="tag">Contact Lens (Soft/RGP/Scleral)</span>
+            <span class="tag">Diabetic Retinopathy Grading</span>
+            <span class="tag">Macular Degeneration Screening</span>
+            <span class="tag">FFA</span>
+            <span class="tag">Glaucoma Screening</span>
+            <span class="tag">Low Vision Rehabilitation</span>
+            <span class="tag">Minor Surgical Assistance</span>
+            <span class="tag">EMR</span>
+            <span class="tag">Insurance Claims</span>
+          </div>
+        </div>
+
+        <div class="card skill-group" data-animate="right">
+          <h3>Personal Skills</h3>
+          <div class="tags">
+            <span class="tag">Patient Education & Counseling</span>
+            <span class="tag">Teamwork & Collaboration</span>
+            <span class="tag">Problem Solving</span>
+            <span class="tag">Decision Making</span>
+            <span class="tag">English</span>
+            <span class="tag">Hindi</span>
+            <span class="tag">Arabic (Work Proficiency)</span>
+            <span class="tag">Tamil</span>
+            <span class="tag">Malayalam</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Education -->
+  <section id="education">
+    <div class="container">
+      <div class="section-head">
+        <h2>Education</h2>
+        <span class="muted">Academic credentials</span>
+      </div>
+      <div class="card" data-animate>
+        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;">
+          <div>
+            <div style="font-weight:700">Bachelor of Optometry</div>
+            <div class="muted">Ahalia School Of Optometry and Research Center</div>
+            <div class="muted">Affiliated to Kerala University of Health Sciences, Kerala, India</div>
+          </div>
+          <div class="pill">Sep 2013 – Apr 2017</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Certifications -->
+  <section id="certs">
+    <div class="container">
+      <div class="section-head">
+        <h2>Licenses & Certifications</h2>
+        <span class="muted">Professional registrations and courses</span>
+      </div>
+      <div class="grid">
+        <div class="card" data-animate="left">
+          <strong>Department of Health (DOH) License</strong><br/>
+          License No: GT 28927<br/>
+          <span class="muted">Jun 2022</span>
+        </div>
+
+        <div class="card" data-animate="right">
+          <strong>Kerala Paramedical Council</strong><br/>
+          Reg No: 537/OM/2021<br/>
+          <span class="muted">Jun 2022</span>
+        </div>
+
+        <div class="card" data-animate="left">
+          <strong>Optometry Council of India</strong><br/>
+          Reg No: 12 2018 2884<br/>
+          <span class="muted">Jun 2018</span>
+        </div>
+
+        <div class="card" data-animate="right">
+          <strong>Indian Optometrist Association</strong><br/>
+          Reg No: 2018 04 0226<br/>
+          <span class="muted">Dec 2018</span>
+        </div>
+
+        <div class="card" data-animate="left">
+          <strong>Posterior Segment Imaging (OCT, Fundusphoto, FFA)</strong><br/>
+          ORBIS International<br/>
+          <span class="muted">May 2021</span>
+        </div>
+
+        <div class="card" data-animate="right">
+          <strong>Retinal Grading – Diabetic Retinopathy Management</strong><br/>
+          ORBIS International<br/>
+          <span class="muted">Aug 2021</span>
+        </div>
+
+        <div class="card" data-animate="left">
+          <strong>LASIK Assessment and Management</strong><br/>
+          AFEH (JCI Accredited) – Palakkad<br/>
+          <span class="muted">Feb 2021</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Volunteering & Awards -->
+  <section id="volunteer">
+    <div class="container">
+      <div class="section-head">
+        <h2>Volunteering & Awards</h2>
+        <span class="muted">Community impact and recognition</span>
+      </div>
+      <div class="grid">
+        <div class="card" data-animate="left">
+          <strong>Volunteer, Helen Keller Blind School, Palakkad</strong>
+          <ul>
+            <li>Assisted with vision assessments and daily training.</li>
+            <li>Conducted awareness on inclusive education and assistive devices.</li>
+          </ul>
+        </div>
+        <div class="card" data-animate="right">
+          <strong>Certificate of Appreciation</strong>
+          <div class="muted">Organized and participated in 150+ community and school eye screening camps (Ahalia Hospital, 2020).</div>
+        </div>
+        <div class="card" data-animate="left">
+          <strong>Employee of the Month</strong>
+          <div class="muted">Recognized for excellence in patient care (June 2021).</div>
+        </div>
+        <div class="card" data-animate="right">
+          <strong>Outstanding Community Service Award</strong>
+          <div class="muted">Vision Camp Project, Kerala (2019).</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <div class="container">
+      <div class="section-head">
+        <h2>Get in Touch</h2>
+        <span class="muted">I’d love to connect</span>
+      </div>
+
+      <div class="contact-wrap">
+        <div class="card" data-animate="left">
+          <ul class="list">
+            <li>
+              <span class="pill">?? Abu Dhabi, United Arab Emirates</span>
+            </li>
+            <li>
+              <a class="pill" href="tel:+971568897270">?? +971 56 889 7270</a>
+            </li>
+            <li>
+              <a class="pill" href="mailto:likhilkaratt@gmail.com">?? likhilkaratt@gmail.com</a>
+            </li>
+            <li>
+              <!-- TODO: Replace # with your LinkedIn URL -->
+              <a class="pill" href="#" target="_blank" rel="noopener">?? LinkedIn</a>
+            </li>
+            <li>
+              <span class="pill">?? Open to Relocate</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="card" data-animate="right">
+          <div style="font-weight:700;margin-bottom:8px;">Why work with me</div>
+          <ul style="margin:0 0 0 18px;line-height:1.6;">
+            <li>Patient-first approach and clear, empathetic communication.</li>
+            <li>Strong collaboration with ophthalmologists and surgical teams.</li>
+            <li>Proven track record in diagnostics, pre/post-op care, and chronic disease management.</li>
+            <li>Committed to quality, safety, and continuous learning.</li>
+          </ul>
+          <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap;">
+            <a class="btn btn-primary" href="mailto:likhilkaratt@gmail.com">Email Me</a>
+            <a class="btn btn-ghost" href="tel:+971568897270">Call</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    © <span id="year"></span> Likhil Karatt. All rights reserved.
+  </footer>
+
+  <a href="#home" class="to-top" id="toTop" aria-label="Back to top">?</a>
+
+  <script>
+    // Utility: prefers-reduced-motion
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // Scroll progress bar
+    const progress = document.getElementById('progress');
+    const onScrollProgress = () => {
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = Math.min(100, (scrollTop / scrollHeight) * 100);
+      progress.style.width = pct + '%';
+    };
+    document.addEventListener('scroll', onScrollProgress, {passive:true});
+    onScrollProgress();
+
+    // Mobile menu
+    const menuBtn = document.getElementById('menuBtn');
+    const navList = document.getElementById('navList');
+    menuBtn?.addEventListener('click', () => {
+      navList.classList.toggle('open');
+    });
+    // Close menu on link click (mobile)
+    navList.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => navList.classList.remove('open'));
+    });
+
+    // Reveal on scroll
+    const revealEls = document.querySelectorAll('[data-animate]');
+    const reveal = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          entry.target.classList.add('in');
+          // animate counters inside revealed blocks
+          entry.target.querySelectorAll('[data-counter]').forEach(startCounter);
+          reveal.unobserve(entry.target);
+        }
+      });
+    }, {threshold: 0.15});
+    revealEls.forEach(el => reveal.observe(el));
+
+    // Counters
+    function startCounter(el){
+      const target = parseInt(el.getAttribute('data-counter'), 10) || 0;
+      const isPlus = target >= 150 || target >= 7; // add + for known metrics
+      const duration = reduceMotion ? 0 : 1000;
+      const start = performance.now();
+      function tick(now){
+        const p = Math.min(1, (now - start) / duration);
+        const val = Math.floor(p * target);
+        el.textContent = isPlus ? (val + (p >= 1 ? '+' : '')) : val;
+        if(p < 1 && duration > 0) requestAnimationFrame(tick);
+        if(duration === 0) el.textContent = target + (isPlus ? '+' : '');
+      }
+      requestAnimationFrame(tick);
+    }
+
+    // Scroll spy
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('nav a[href^="#"]');
+    const spy = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const id = entry.target.getAttribute('id');
+        const link = document.querySelector('nav a[href="#' + id + '"]');
+        if(link){
+          if(entry.isIntersecting){
+            navLinks.forEach(l => l.classList.remove('active'));
+            link.classList.add('active');
+          }
+        }
+      });
+    }, {rootMargin: '-45% 0% -50% 0%', threshold: 0.01});
+    sections.forEach(s => spy.observe(s));
+
+    // Back to top
+    const toTop = document.getElementById('toTop');
+    const toggleTop = () => {
+      if(window.scrollY > 400){ toTop.classList.add('show'); } else { toTop.classList.remove('show'); }
+    };
+    document.addEventListener('scroll', toggleTop, {passive:true});
+    toggleTop();
+
+    // Print
+    document.getElementById('printBtn')?.addEventListener('click', () => window.print());
+
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+
+  <!-- Structured data for SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Likhil Karatt",
+    "jobTitle": "Optometrist",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Abu Dhabi",
+      "addressCountry": "United Arab Emirates"
+    },
+    "email": "mailto:likhilkaratt@gmail.com",
+    "telephone": "+971568897270",
+    "url": "",
+    "alumniOf": "Ahalia School Of Optometry and Research Center",
+    "sameAs": []
+  }
+  </script>
+</body>
+</html>
